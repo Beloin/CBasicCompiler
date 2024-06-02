@@ -76,6 +76,14 @@ int interpretAST(struct ASTnode *n) {
   if (n->right)
     rightval = interpretAST(n->right);
 
+#ifdef NDEBUG
+  // Debug: Print what we are about to do
+  if (n->op == A_INTLIT)
+    printf("int %d\n", n->intvalue);
+  else
+    printf("%d %s %d\n", leftval, ASTop[n->op], rightval);
+#endif /* ifdef NDEBUG */
+
   switch (n->op) {
   case A_ADD:
     return (leftval + rightval);

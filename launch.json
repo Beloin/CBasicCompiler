@@ -5,7 +5,7 @@
       "program": "./target",
       "preProcess": true,
       "pipeline": ["echo 'Hello World'", "make debug"],
-      "args" : ["examples/simple_math.bc"]
+      "args" : ["examples/math_example_02.bc"]
     }
   ]
 }

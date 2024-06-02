@@ -3,6 +3,9 @@
 
 #include "lexical/ast.h"
 
+// List of AST operators
+static char *ASTop[] = {"+", "-", "*", "/"};
+
 // Convert a token into an AST operation.
 ASTNodeType arithop(int tok);
 
