@@ -8,7 +8,14 @@ struct token {
   int intvalue;
 };
 
-enum { T_PLUS, T_MINUS, T_STAR, T_SLASH, T_INTLIT };
+enum {
+  T_PLUS = 0,
+  T_MINUS = 1,
+  T_STAR = 2,
+  T_SLASH = 3,
+  T_INTLIT = 4,
+  T_EOF = 5
+};
 
 // Scan current line usingthe following externs:
 // int Line;

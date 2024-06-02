@@ -1,0 +1,11 @@
+{
+  "configurations":[ 
+    {
+      "run": "make debug",
+      "program": "./target",
+      "preProcess": true,
+      "pipeline": ["echo 'Hello World'", "make debug"],
+      "args" : ["examples/simple_math.bc"]
+    }
+  ]
+}

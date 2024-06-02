@@ -13,7 +13,7 @@ struct ASTnode {
 };
 
 // Build and return a generic AST node
-struct ASTnode *mkastode(ASTNodeType op, struct ASTnode *left,
+struct ASTnode *mkastnode(ASTNodeType op, struct ASTnode *left,
                          struct ASTnode *right, int intvalue);
 
 // Make an AST leaf node

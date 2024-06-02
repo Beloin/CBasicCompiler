@@ -10,6 +10,9 @@ SRC_OBJS= $(SRC_FILES:.c=.o)
 
 TARGET_CFLAGS=
 
+debug: CFLAGS += -DNDEBUG -g
+debug: target
+
 all: target
 
 %.o: %.c

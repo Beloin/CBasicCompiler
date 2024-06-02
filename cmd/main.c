@@ -1,4 +1,6 @@
 #include "data.h"
+#include "lexical/ast.h"
+#include "lexical/expr.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,8 +8,8 @@
 
 // TODO: Put this into a API on its own -- All this is referenced by extern in
 // data.h
-int Line;
-int Putback;
+int Line = 0;
+int Putback = 0;
 FILE *Infile;
 struct token Token;
 
@@ -17,20 +19,22 @@ static void scanfile();
 char *tokstr[] = {"+", "-", "*", "/", "intlit"};
 
 int main(int argc, char *argv[]) {
+  struct ASTnode *node;
   Infile = fopen(argv[1], "r");
 
-  scanfile();
+  // scanfile();
+  scan(&Token);
+  node = binexpr();
+  printf("%d\n", interpretAST(node));
 
   return EXIT_SUCCESS;
 }
 
 static void scanfile() {
-  struct token T;
-
-  while (scan(&T)) {
-    printf("Token %s", tokstr[T.token]);
-    if (T.token == T_INTLIT)
-      printf(", value %d", T.intvalue);
+  while (scan(&Token)) {
+    printf("Token %s", tokstr[Token.token]);
+    if (Token.token == T_INTLIT)
+      printf(", value %d", Token.intvalue);
     printf("\n");
   }
 }
