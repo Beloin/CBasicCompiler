@@ -52,7 +52,7 @@ int scan(struct token *t) {
 
       break;
     }
-    printf("Unrecognised character %c on line %d\n", c, Line);
+    printf("Unrecognised character '%c' on line %d\n", c, Line);
     exit(1);
   }
 

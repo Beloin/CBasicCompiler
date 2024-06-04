@@ -26,3 +26,25 @@ number:  T_INTLIT # Terminal symbol
 ```
 
 Create Abstract Syntax Trees, this is what the parses will allways result in.
+
+Now to add precedence, we need the following grammar:
+
+```BNF
+expression: additive_expression
+    ;
+
+additive_expression:
+      multiplicative_expression
+    | additive_expression '+' multiplicative_expression
+    | additive_expression '-' multiplicative_expression
+    ;
+
+multiplicative_expression:
+      number
+    | number '*' multiplicative_expression
+    | number '/' multiplicative_expression
+    ;
+
+number:  T_INTLIT
+         ;
+```

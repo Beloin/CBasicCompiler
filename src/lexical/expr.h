@@ -21,4 +21,10 @@ struct ASTnode *binexpr(void);
 // a final value.
 int interpretAST(struct ASTnode *n);
 
+// Return an AST tree whose root is a '+' or '-' binary operator
+struct ASTnode *additive_expr(void);
+
+// Return an AST tree whose root is a '*' or '/' binary operator
+struct ASTnode *multiplicative_expr(void);
+
 #endif // !LEXICAL_EXPR_H
