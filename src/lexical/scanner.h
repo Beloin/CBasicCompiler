@@ -9,12 +9,12 @@ struct token {
 };
 
 enum {
-  T_PLUS = 0,
-  T_MINUS = 1,
-  T_STAR = 2,
-  T_SLASH = 3,
-  T_INTLIT = 4,
-  T_EOF = 5
+  T_EOF,
+  T_PLUS,
+  T_MINUS,
+  T_STAR,
+  T_SLASH,
+  T_INTLIT,
 };
 
 // Scan current line usingthe following externs:

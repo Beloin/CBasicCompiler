@@ -2,6 +2,7 @@
 #include "data.h"
 #include "lexical/ast.h"
 #include "lexical/scanner.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -38,30 +39,32 @@ static struct ASTnode *primary(void) {
   }
 }
 
-struct ASTnode *binexpr(void) {
+struct ASTnode *binexpr(int ptp) {
   struct ASTnode *n, *left, *right;
   int nodetype;
+  int tokentype;
 
   // Get the integer literal on the left.
   // Fetch the next token at the same time.
   left = primary();
 
   // If no tokens left, return just the left node
-  if (Token.token == T_EOF)
+  tokentype = Token.token;
+  if (tokentype == T_EOF)
     return (left);
 
-  // Convert the token into a node type
-  nodetype = arithop(Token.token);
+  while (op_precedence(tokentype) > ptp) {
+    scan(&Token);
+    right = binexpr(OpPrec[tokentype]);
+    left = mkastnode(arithop(tokentype), left, right, 0);
 
-  // Get the next token in
-  scan(&Token);
+    tokentype = Token.token;
+    if (tokentype == T_EOF) {
+      return left;
+    }
+  }
 
-  // Recursively get the right-hand tree
-  right = binexpr();
-
-  // Now build a tree with both sub-trees
-  n = mkastnode(nodetype, left, right, 0);
-  return (n);
+  return left;
 }
 
 // Given an AST, interpret the
@@ -165,4 +168,13 @@ struct ASTnode *multiplicative_expr(void) {
 
   // Return whatever tree we have created
   return (left);
+}
+
+static int op_precedence(int tokentype) {
+  int prec = OpPrec[tokentype];
+  if (prec == 0) {
+    fprintf(stderr, "syntax error on line %d, token %d\n", Line, tokentype);
+    exit(1);
+  }
+  return (prec);
 }

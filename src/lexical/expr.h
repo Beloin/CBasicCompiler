@@ -14,7 +14,10 @@ ASTNodeType arithop(int tok);
 static struct ASTnode *primary(void);
 
 // Return an AST tree whose root is a binary operator
-struct ASTnode *binexpr(void);
+// Parameter ptp is the previous token's precedence.
+// Using this to add Pratt's Precedence parser using a table
+// based on Token type
+struct ASTnode *binexpr(int ptp);
 
 // Given an AST, interpret the
 // operators in it and return
@@ -22,9 +25,19 @@ struct ASTnode *binexpr(void);
 int interpretAST(struct ASTnode *n);
 
 // Return an AST tree whose root is a '+' or '-' binary operator
-struct ASTnode *additive_expr(void);
+[[deprecated]] struct ASTnode *additive_expr(void);
 
 // Return an AST tree whose root is a '*' or '/' binary operator
-struct ASTnode *multiplicative_expr(void);
+[[deprecated]] struct ASTnode *multiplicative_expr(void);
+
+// Definitions of function following Pratt's parser
+
+// Operator precedence for each token -> The higher the higher precedence
+static int OpPrec[] = {0, 10, 10, 20, 20, 0};
+//                     EOF  +   -   *   /  INTLIT
+
+// Check that we have a binary operator and
+// return its precedence.
+static int op_precedence(int tokentype);
 
 #endif // !LEXICAL_EXPR_H

@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 
   // scanfile();
   scan(&Token);
-  node = binexpr();
+  node = binexpr(0);
   printf("%d\n", interpretAST(node));
 
   return EXIT_SUCCESS;
