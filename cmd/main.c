@@ -19,13 +19,13 @@ static void scanfile();
 char *tokstr[] = {"+", "-", "*", "/", "intlit"};
 
 int main(int argc, char *argv[]) {
-  struct ASTnode *node;
+  struct ASTnode *ast;
   Infile = fopen(argv[1], "r");
 
   // scanfile();
   scan(&Token);
-  node = binexpr(0);
-  printf("%d\n", interpretAST(node));
+  ast = binexpr(0);
+  printf("%d\n", interpretAST(ast));
 
   return EXIT_SUCCESS;
 }
