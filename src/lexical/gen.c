@@ -1,7 +1,7 @@
 #include "gen.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "asm/cpu86x64.h"
+#include "asm/cpux8664.h"
 
 void generatecode(struct ASTnode *n) {
   int reg;

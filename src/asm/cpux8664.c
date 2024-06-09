@@ -1,7 +1,7 @@
-#include "cpu86x64.h"
 #include "data.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "cpux8664.h"
 
 int cgload(int value) {
 
