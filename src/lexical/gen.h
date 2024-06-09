@@ -7,7 +7,7 @@
 // assembly code recursively
 static int genAST(struct ASTnode *n);
 
-// Generate codes with preamble and postamble
+// Generate code with preamble and postamble
 void generatecode(struct ASTnode *n);
 
 #endif // !LEXICAL_GEN_H

@@ -8,5 +8,6 @@ extern struct token Token;
 extern int Line;
 extern int Putback;
 extern FILE *Infile;
+extern FILE *Outfile;
 
 #endif // !SHARE_DATA_H

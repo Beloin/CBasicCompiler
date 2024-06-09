@@ -1,4 +1,5 @@
 #include "cpu86x64.h"
+#include "data.h"
 #include <stdio.h>
 #include <stdlib.h>
 

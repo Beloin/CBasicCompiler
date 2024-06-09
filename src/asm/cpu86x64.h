@@ -5,10 +5,6 @@
 // "target" asm. i.e (/asm/i358/*)
 // also is necessary to "abstract" this part of the code
 
-#include <stdio.h>
-
-extern FILE *Outfile;
-
 // -> Specific x86-64 functions
 
 // Registers and current state
