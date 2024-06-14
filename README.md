@@ -2,6 +2,9 @@
 
 This is my own version of a compiler.
 
+# Asm to bin:
+
+cc -o out out.s
 
 # Lexical
 Code to read file and parse it into tokens.
@@ -47,4 +50,15 @@ multiplicative_expression:
 
 number:  T_INTLIT
          ;
+```
+
+
+Now we need to add statements, initially we can do this:
+
+```BNF
+statements: statement
+    | statement statements
+    ;
+
+statement: 'print' expression ';'
 ```

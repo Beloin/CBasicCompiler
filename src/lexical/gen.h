@@ -5,7 +5,7 @@
 
 // Given an AST, generate
 // assembly code recursively
-static int genAST(struct ASTnode *n);
+int genAST(struct ASTnode *n);
 
 // Generate code with preamble and postamble
 void generatecode(struct ASTnode *n);

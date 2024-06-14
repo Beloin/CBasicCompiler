@@ -12,7 +12,7 @@ void generatecode(struct ASTnode *n) {
   cgpostamble();
 }
 
-static int genAST(struct ASTnode *n) {
+int genAST(struct ASTnode *n) {
   int leftreg, rightreg;
 
   // Get the left and right sub-tree values

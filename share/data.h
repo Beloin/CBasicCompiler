@@ -4,6 +4,10 @@
 #include "lexical/scanner.h"
 #include <stdio.h>
 
+#define TEXTLEN 512
+
+extern char Text[TEXTLEN + 1];
+
 extern struct token Token;
 extern int Line;
 extern int Putback;

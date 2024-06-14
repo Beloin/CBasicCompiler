@@ -50,7 +50,7 @@ struct ASTnode *binexpr(int ptp) {
 
   // If no tokens left, return just the left node
   tokentype = Token.token;
-  if (tokentype == T_EOF)
+  if (tokentype == T_SEMI)
     return (left);
 
   while (op_precedence(tokentype) > ptp) {
@@ -59,7 +59,7 @@ struct ASTnode *binexpr(int ptp) {
     left = mkastnode(arithop(tokentype), left, right, 0);
 
     tokentype = Token.token;
-    if (tokentype == T_EOF) {
+    if (tokentype == T_SEMI) {
       return left;
     }
   }

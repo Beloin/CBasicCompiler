@@ -1,12 +1,12 @@
+#include "asm/asm.h"
 #include "data.h"
 #include "lexical/ast.h"
-#include "lexical/expr.h"
-#include "lexical/gen.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include <lexical/scanner.h>
+#include <lexical/statement.h>
 #include <string.h>
 
 // TODO: Put this into a API on its own -- All this is referenced by extern in
@@ -16,6 +16,7 @@ int Putback = 0;
 FILE *Infile;
 FILE *Outfile;
 struct token Token;
+char Text[TEXTLEN + 1];
 
 // Loop scanning in all the tokens in the input file.
 // Print out details of each token found.
@@ -46,12 +47,11 @@ int main(int argc, char *argv[]) {
     exit(1);
   }
 
-  scan(&Token);
-  ast = binexpr(0);
-  printf("%d\n", interpretAST(ast));
-  generatecode(ast);
-
-  fclose(Outfile);
+  scan(&Token);    // Get the first token from the input
+  genpreamble();   // Output the preamble
+  statements();    // Parse the statements in the input
+  genpostamble();  // Output the postamble
+  fclose(Outfile); // Close the output file and exit
 
   return EXIT_SUCCESS;
 }
