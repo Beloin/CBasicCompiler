@@ -68,8 +68,8 @@ struct ASTnode *binexpr(int ptp) {
 }
 
 // Given an AST, interpret the
-// operators in it and return
 // a final value.
+// operators in it and return
 int interpretAST(struct ASTnode *n) {
   int leftval, rightval;
 

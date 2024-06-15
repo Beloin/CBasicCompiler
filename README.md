@@ -4,7 +4,7 @@ This is my own version of a compiler.
 
 # Asm to bin:
 
-cc -o out out.s
+Command: `cc -o out out.s`
 
 # Lexical
 Code to read file and parse it into tokens.
@@ -62,3 +62,21 @@ statements: statement
 
 statement: 'print' expression ';'
 ```
+
+
+Add variables:
+
+```
+ tatements: statement
+      |      statement statements
+      ;
+
+ statement: 'print' expression ';'
+      |     'int'   identifier ';'
+      |     identifier '=' expression ';'
+      ;
+
+ identifier: T_IDENT
+      ;
+```
+

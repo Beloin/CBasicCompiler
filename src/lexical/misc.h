@@ -5,9 +5,9 @@
 // and fetch the next token. Otherwise
 // throw an error
 #include "data.h"
+#include "lexical/scanner.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "lexical/scanner.h"
 
 void match(int t, char *what) {
   if (Token.token == t) {
@@ -20,5 +20,6 @@ void match(int t, char *what) {
 
 // Match a semicon and fetch the next token
 void semi(void) { match(T_SEMI, ";"); }
+void ident(void) { match(T_IDENTF, "identifier"); }
 
 #endif // !SHARE_HELPER_H

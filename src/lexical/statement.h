@@ -11,4 +11,15 @@
 // Parse one or more statements
 void statements(void);
 
+void print_statement();
+
+// Parse the declaration of a variable
+void var_declaration();
+
+void semi();
+
+void ident();
+
+void assignment_statement(void);
+
 #endif // !LEXICAL_STATEMENT_H

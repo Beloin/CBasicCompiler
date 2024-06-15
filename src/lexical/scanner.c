@@ -49,6 +49,9 @@ int scan(struct token *t) {
   case ';':
     t->token = T_SEMI;
     break;
+  case '=':
+    t->token = T_EQUALS;
+    break;
   default:
     if (isdigit(c)) {
       t->intvalue = scanint(c);
@@ -65,9 +68,9 @@ int scan(struct token *t) {
         break;
       }
 
-      // Not a recognised keyword, so an error for now
-      printf("Unrecognised character '%c' on line %d\n", c, Line);
-      exit(1);
+      // Not a recognised keyword, so it must be an identifier
+      t->token = T_IDENTF;
+      break;
     }
     // The character isn't part of any recognised token, error
     printf("Unrecognised character %c on line %d\n", c, Line);
@@ -161,6 +164,10 @@ static int keyword(char *s) {
   case 'p':
     if (!strcmp(s, "print"))
       return (T_PRINT);
+    break;
+  case 'i':
+    if (!strcmp(s, "int"))
+      return T_INT;
     break;
   }
   return (0);
