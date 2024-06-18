@@ -4,6 +4,7 @@
 #include "lexical/expr.h"
 #include "lexical/gen.h"
 #include "lexical/misc.h"
+#include "lexical/symbols.h"
 
 void statements(void) {
 
@@ -35,7 +36,7 @@ void print_statement() {
   // Parse the following expression and
   // generate the assembly code
   tree = binexpr(0);
-  reg = genAST(tree);
+  reg = genAST(tree, -1);
   genprintint(reg);
   genfreeregs();
 
@@ -70,7 +71,7 @@ void assignment_statement(void) {
   if ((id = findglob(Text)) == -1) {
     fatals("Undeclared variable", Text);
   }
-  right = mkastleaf(A_LVIDENT, id); // L VALUE IDENTIFIER
+  right = mkastleaf(A_LVIDENTF, id); // L VALUE IDENTIFIER
 
   // Ensure we have an equals sign
   match(T_EQUALS, "=");

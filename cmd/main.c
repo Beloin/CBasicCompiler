@@ -1,6 +1,7 @@
 #include "asm/asm.h"
 #include "data.h"
 #include "lexical/ast.h"
+#include "lexical/symbols.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,6 +18,7 @@ FILE *Infile;
 FILE *Outfile;
 struct token Token;
 char Text[TEXTLEN + 1];
+struct symtable Gsym[NSYMBOLS]; // Global symbol table
 
 // Loop scanning in all the tokens in the input file.
 // Print out details of each token found.

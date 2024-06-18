@@ -2,14 +2,27 @@
 #define LEXICAL_AST_H
 
 // AST node types
-typedef enum { A_ADD, A_SUBTRACT, A_MULTIPLY, A_DIVIDE, A_INTLIT } ASTNodeType;
+typedef enum {
+  A_ADD,
+  A_SUBTRACT,
+  A_MULTIPLY,
+  A_DIVIDE,
+  A_INTLIT,
+  A_IDENTF,
+  A_LVIDENTF,
+  A_ASSIGN
+} ASTNodeType;
 
 // Abstract Syntax Tree structure
 struct ASTnode {
   ASTNodeType op;       // "Operation" to be performed on this tree
   struct ASTnode *left; // Left and right child trees
   struct ASTnode *right;
-  int intvalue; // For A_INTLIT, the integer value
+  // int intvalue; // For A_INTLIT, the integer value
+  union {
+    int intvalue; // When A_INTLIT
+    int id;       // When A_IDENTF
+  } v;
 };
 
 // Build and return a generic AST node

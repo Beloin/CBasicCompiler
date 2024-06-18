@@ -1,7 +1,7 @@
+#include "cpux8664.h"
 #include "data.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "cpux8664.h"
 
 int cgload(int value) {
 
@@ -104,3 +104,19 @@ void cgpostamble() {
         "\tret\n",
         Outfile);
 }
+
+int cgloadglob(char *identifier) {
+  // Get a new register
+  int r = alloc_register();
+
+  // Print out the code to initialise it
+  fprintf(Outfile, "\tmovq\t%s(\%%rip), %s\n", identifier, reglist[r]);
+  return (r);
+}
+
+int cgstorglob(int r, char *identifier) {
+  fprintf(Outfile, "\tmovq\t%s, %s(\%%rip)\n", reglist[r], identifier);
+  return (r);
+}
+
+void cgglobsym(char *sym) { fprintf(Outfile, "\t.comm\t%s,8,8\n", sym); }

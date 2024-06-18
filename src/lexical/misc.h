@@ -4,22 +4,18 @@
 // Ensure that the current token is t,
 // and fetch the next token. Otherwise
 // throw an error
-#include "data.h"
-#include "lexical/scanner.h"
-#include <stdio.h>
-#include <stdlib.h>
-
-void match(int t, char *what) {
-  if (Token.token == t) {
-    scan(&Token);
-  } else {
-    printf("%s expected on line %d\n", what, Line);
-    exit(1);
-  }
-}
+void match(int t, char *what);
 
 // Match a semicon and fetch the next token
-void semi(void) { match(T_SEMI, ";"); }
-void ident(void) { match(T_IDENTF, "identifier"); }
+void semi(void);
+void ident(void);
+
+// Print out fatal messages
+void fatal(char *s);
+
+void fatals(char *s1, char *s2);
+
+void fatald(char *s, int d);
+void fatalc(char *s, int c);
 
 #endif // !SHARE_HELPER_H

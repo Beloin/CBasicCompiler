@@ -1,8 +1,9 @@
 #include "expr.h"
 #include "data.h"
 #include "lexical/ast.h"
+#include "lexical/misc.h"
 #include "lexical/scanner.h"
-#include <math.h>
+#include "lexical/symbols.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -24,6 +25,7 @@ ASTNodeType arithop(int tok) {
 
 static struct ASTnode *primary(void) {
   struct ASTnode *n;
+  int id;
 
   // For an INTLIT token, make a leaf AST node for it
   // and scan in the next token. Otherwise, a syntax error
@@ -31,12 +33,22 @@ static struct ASTnode *primary(void) {
   switch (Token.token) {
   case T_INTLIT:
     n = mkastleaf(A_INTLIT, Token.intvalue);
-    scan(&Token);
-    return (n);
+    break;
+  case T_IDENTF:
+    id = findglob(Text);
+    if (id == -1) {
+      fatals("Unknown variable", Text);
+    }
+
+    // Make a leaf AST node for it
+    n = mkastleaf(A_IDENTF, id);
+    break;
   default:
-    fprintf(stderr, "syntax error on line %d\n", Line);
-    exit(1);
+    fatald("Syntax error, token", Token.token);
   }
+
+  scan(&Token);
+  return n;
 }
 
 struct ASTnode *binexpr(int ptp) {
@@ -97,7 +109,7 @@ int interpretAST(struct ASTnode *n) {
   case A_DIVIDE:
     return (leftval / rightval);
   case A_INTLIT:
-    return (n->intvalue);
+    return (n->v.intvalue);
   default:
     fprintf(stderr, "Unknown AST operator %d\n", n->op);
     exit(1);

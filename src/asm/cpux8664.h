@@ -53,4 +53,13 @@ int cgsub(int r1, int r2);
 // return the number of the register with the result
 int cgdiv(int r1, int r2);
 
+// Load a identifier returning the register
+int cgloadglob(char *identifier);
+
+// Store a register's value into a variable
+int cgstorglob(int r, char *identifier);
+
+// Generate a global symbol
+void cgglobsym(char *sym);
+
 #endif // !ASM_86X64_H
