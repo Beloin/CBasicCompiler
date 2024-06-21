@@ -9,18 +9,19 @@ struct token {
 };
 
 // TODO: Tokens could be elsewhere
+// Low to high precedence
 enum {
   T_EOF,
-  T_PLUS,
-  T_MINUS,
-  T_STAR,
-  T_SLASH,
-  T_INTLIT,
-  T_SEMI,
-  T_PRINT,
-  T_EQUALS,
-  T_IDENTF,
-  T_INT
+  T_PLUS, T_MINUS,
+  T_STAR, T_SLASH,
+
+  T_EQ, T_NE,
+  T_LT, T_GT, T_LE, T_GE, 
+
+  T_INTLIT, T_SEMI, T_ASSIGN, T_IDENTF,
+
+  // Keywords -- Not accounted in OpPrec
+  T_PRINT, T_INT
 };
 
 // Scan current line usingthe following externs:

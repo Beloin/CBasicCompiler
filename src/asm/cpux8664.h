@@ -10,6 +10,7 @@
 // Registers and current state
 static int freereg[4];
 static char *reglist[4] = {"%r8", "%r9", "%r10", "%r11"};
+static char *breglist[4] = {"%r8b", "%r9b", "%r10b", "%r11b"};
 
 // Set all registers as available
 void freeall_registers(void);
@@ -61,5 +62,19 @@ int cgstorglob(int r, char *identifier);
 
 // Generate a global symbol
 void cgglobsym(char *sym);
+
+// Compare registers using `how` as operator to retrieve result
+static int cgcompare(int r1, int r2, char *how);
+
+int cgequal(int r1, int r2);
+
+int cgnotequal(int r1, int r2);
+int cglessthan(int r1, int r2);
+
+int cggreaterthan(int r1, int r2);
+
+int cglessequal(int r1, int r2);
+
+int cggreaterequal(int r1, int r2);
 
 #endif // !ASM_86X64_H

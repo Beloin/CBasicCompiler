@@ -33,8 +33,12 @@ int interpretAST(struct ASTnode *n);
 // Definitions of function following Pratt's parser
 
 // Operator precedence for each token -> The higher the higher precedence
-static int OpPrec[] = {0, 10, 10, 20, 20, 0};
-//                     EOF  +   -   *   /  INTLIT
+static int OpPrec[] = {
+  0, 10, 10,     // T_EOF, T_PLUS, T_MINUS
+  20, 20,        // T_STAR, T_SLASH
+  30, 30,        // T_EQ, T_NE
+  40, 40, 40, 40 // T_LT, T_GT, T_LE, T_GE
+};
 
 // Check that we have a binary operator and
 // return its precedence.

@@ -8,19 +8,12 @@
 #include <stdlib.h>
 
 ASTNodeType arithop(int tok) {
-  switch (tok) {
-  case T_PLUS:
-    return (A_ADD);
-  case T_MINUS:
-    return (A_SUBTRACT);
-  case T_STAR:
-    return (A_MULTIPLY);
-  case T_SLASH:
-    return (A_DIVIDE);
-  default:
-    fprintf(stderr, "unknown token in arithop() on line %d\n", Line);
-    exit(1);
+  if (tok > T_EOF && tok < T_INTLIT) {
+    return (tok);
   }
+
+  fatald("Syntax error, token", tok);
+  return -1;
 }
 
 static struct ASTnode *primary(void) {

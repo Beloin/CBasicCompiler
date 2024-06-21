@@ -3,14 +3,13 @@
 
 // AST node types
 typedef enum {
-  A_ADD,
-  A_SUBTRACT,
-  A_MULTIPLY,
-  A_DIVIDE,
+  A_ADD = 1, A_SUBTRACT, A_MULTIPLY, A_DIVIDE,
+
+  A_EQ, A_NE, A_LT, A_GT, A_LE, A_GE,
+
   A_INTLIT,
-  A_IDENTF,
-  A_LVIDENTF,
-  A_ASSIGN
+
+  A_IDENTF, A_LVIDENTF, A_ASSIGN
 } ASTNodeType;
 
 // Abstract Syntax Tree structure

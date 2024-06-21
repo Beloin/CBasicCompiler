@@ -6,6 +6,5 @@ duda = 7;
 belois = 12;
 lucas = belois + duda;
 
-lucas = belois = duda = 12;
 
 print lucas;

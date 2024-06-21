@@ -1,6 +1,6 @@
 # Own C subset Compiler 
 
-This is my own version of a compiler.
+This is my own version of a compiler. Will be a self-compiling compiler.
 
 # Asm to bin:
 
