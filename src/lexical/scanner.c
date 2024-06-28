@@ -190,6 +190,9 @@ static int scanident(int c, char *buf, int lim) {
 
 static int keyword(char *s) {
   switch (*s) {
+  case 'e':
+    if (!strcmp(s, "else"))
+      return (T_ELSE);
   case 'p':
     if (!strcmp(s, "print"))
       return (T_PRINT);
@@ -197,6 +200,8 @@ static int keyword(char *s) {
   case 'i':
     if (!strcmp(s, "int"))
       return T_INT;
+    if (!strcmp(s, "if"))
+      return T_IF;
     break;
   }
   return (0);

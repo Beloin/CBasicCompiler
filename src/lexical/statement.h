@@ -22,4 +22,13 @@ void ident();
 
 void assignment_statement(void);
 
+// Parse a compound statement
+// and return its AST
+struct ASTnode *compound_statement(void);
+
+// Parse an IF statement including
+// any optional ELSE clause
+// and return its AST
+struct ASTnode *if_statement(void);
+
 #endif // !LEXICAL_STATEMENT_H

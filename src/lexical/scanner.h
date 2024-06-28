@@ -20,7 +20,11 @@ enum {
 
   T_INTLIT, T_SEMI, T_ASSIGN, T_IDENTF,
 
+  T_LBRACE, T_RBRACE, T_LPAREN, T_RPAREN,
+
   // Keywords -- Not accounted in OpPrec
+  T_IF, T_ELSE,
+
   T_PRINT, T_INT
 };
 
