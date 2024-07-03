@@ -1,5 +1,7 @@
 #include "cpux8664.h"
 #include "data.h"
+#include "lexical/ast.h"
+#include "lexical/misc.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -141,3 +143,33 @@ int cggreaterthan(int r1, int r2) { return (cgcompare(r1, r2, "setg")); }
 int cglessequal(int r1, int r2) { return (cgcompare(r1, r2, "setle")); }
 
 int cggreaterequal(int r1, int r2) { return (cgcompare(r1, r2, "setge")); }
+
+// Compare two registers and set if true.
+int cgcompare_and_set(int ASTop, int r1, int r2) {
+
+  // Check the range of the AST operation
+  if (ASTop < A_EQ || ASTop > A_GE)
+    fatal("Bad ASTop in cgcompare_and_set()");
+
+  fprintf(Outfile, "\tcmpq\t%s, %s\n", reglist[r2], reglist[r1]);
+  fprintf(Outfile, "\t%s\t%s\n", cmplist[ASTop - A_EQ], breglist[r2]);
+  fprintf(Outfile, "\tmovzbq\t%s, %s\n", breglist[r2], reglist[r2]);
+  free_register(r1);
+  return (r2);
+}
+
+int cgcompare_and_jump(int ASTop, int r1, int r2, int label) {
+
+  // Check the range of the AST operation
+  if (ASTop < A_EQ || ASTop > A_GE)
+    fatal("Bad ASTop in cgcompare_and_set()");
+
+  fprintf(Outfile, "\tcmpq\t%s, %s\n", reglist[r2], reglist[r1]);
+  fprintf(Outfile, "\t%s\tL%d\n", invcmplist[ASTop - A_EQ], label);
+  freeall_registers();
+  return (NOREG);
+}
+
+void cglabel(int l) { fprintf(Outfile, "L%d:\n", l); }
+
+void cgjump(int l) { fprintf(Outfile, "\tjmp\tL%d\n", l); }

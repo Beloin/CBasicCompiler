@@ -1,12 +1,13 @@
-# Own C subset Compiler 
+# Own C subset Compiler
 
 This is my own version of a compiler. Will be a self-compiling compiler.
 
-# Asm to bin:
+# Asm to bin
 
 Command: `cc -o out out.s`
 
 # Lexical
+
 Code to read file and parse it into tokens.
 
 The parser's job is to recognise the input
@@ -52,7 +53,6 @@ number:  T_INTLIT
          ;
 ```
 
-
 Now we need to add statements, initially we can do this:
 
 ```BNF
@@ -63,10 +63,9 @@ statements: statement
 statement: 'print' expression ';'
 ```
 
-
 Add variables:
 
-```
+```BNF
  tatements: statement
       |      statement statements
       ;
@@ -80,7 +79,6 @@ Add variables:
       ;
 ```
 
-
 Conditional
 
 ```
@@ -89,6 +87,7 @@ Conditional
   else
     perform this other block of code
 ```
+
 In assembly the code runs using jumps to labels, but we jump to the label if the opposite is true.
 
 New Grammar:

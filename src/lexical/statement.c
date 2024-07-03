@@ -29,24 +29,22 @@ void statements(void) {
   }
 }
 
-void print_statement() {
+struct ASTnode* print_statement() {
   struct ASTnode *tree;
   int reg;
   // Match a 'print' as the first token
   match(T_PRINT, "print");
 
-  // Parse the following expression and
-  // generate the assembly code
+  // Parse the following expression
   tree = binexpr(0);
-  reg = genAST(tree, -1);
-  genprintint(reg);
-  genfreeregs();
+
+  // Make a print AST tree
+  tree = mkastunary(A_PRINT, tree, 0);
 
   // Match the following semicolon
   // and stop if we are at EOF
   semi();
-  if (Token.token == T_EOF)
-    return;
+  return tree;
 }
 
 // Parse the declaration of a variable

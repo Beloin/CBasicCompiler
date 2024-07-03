@@ -7,15 +7,18 @@ typedef enum {
 
   A_EQ, A_NE, A_LT, A_GT, A_LE, A_GE,
 
-  A_INTLIT,
+  A_INTLIT, A_PRINT,
 
-  A_IDENTF, A_LVIDENTF, A_ASSIGN
+  A_IDENTF, A_LVIDENTF, A_ASSIGN,
+
+  A_GLUE, A_IF // A_GLUE is used to "glue" statements
 } ASTNodeType;
 
 // Abstract Syntax Tree structure
 struct ASTnode {
   ASTNodeType op;       // "Operation" to be performed on this tree
   struct ASTnode *left; // Left and right child trees
+  struct ASTnode *mid;
   struct ASTnode *right;
   // int intvalue; // For A_INTLIT, the integer value
   union {
@@ -24,9 +27,14 @@ struct ASTnode {
   } v;
 };
 
+// Use NOREG when the AST generation
+// functions have no register to return
+#define NOREG -1
+
 // Build and return a generic AST node
 struct ASTnode *mkastnode(ASTNodeType op, struct ASTnode *left,
-                          struct ASTnode *right, int intvalue);
+                          struct ASTnode *mid, struct ASTnode *right,
+                          int intvalue);
 
 // Make an AST leaf node
 struct ASTnode *mkastleaf(ASTNodeType op, int intvalue);

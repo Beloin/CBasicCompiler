@@ -2,16 +2,17 @@
   {
     "arguments": [
       "/usr/bin/gcc",
-      "-c",
       "-Isrc/",
       "-Ishare/",
-      "-otarget",
-      "./src/lexical/ast.o",
-      "./src/lexical/expr.o",
-      "./src/lexical/scanner.o",
-      "./cmd/main.c"
+      "-DNDEBUG",
+      "-g",
+      "-c",
+      "-o",
+      "src/lexical/expr.o",
+      "src/lexical/expr.c"
     ],
     "directory": "/home/beloin/Documents/software/compiler",
-    "file": "/home/beloin/Documents/software/compiler/cmd/main.c"
+    "file": "/home/beloin/Documents/software/compiler/src/lexical/expr.c",
+    "output": "/home/beloin/Documents/software/compiler/src/lexical/expr.o"
   }
 ]

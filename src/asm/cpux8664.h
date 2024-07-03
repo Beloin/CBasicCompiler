@@ -11,6 +11,13 @@
 static int freereg[4];
 static char *reglist[4] = {"%r8", "%r9", "%r10", "%r11"};
 static char *breglist[4] = {"%r8b", "%r9b", "%r10b", "%r11b"};
+// List of comparison instructions,
+// in AST order: A_EQ, A_NE, A_LT, A_GT, A_LE, A_GE
+static char *cmplist[] = {"sete", "setne", "setl", "setg", "setle", "setge"};
+
+// List of inverted jump instructions,
+// in AST order: A_EQ, A_NE, A_LT, A_GT, A_LE, A_GE
+static char *invcmplist[] = {"jne", "je", "jge", "jle", "jg", "jl"};
 
 // Set all registers as available
 void freeall_registers(void);
@@ -76,5 +83,17 @@ int cggreaterthan(int r1, int r2);
 int cglessequal(int r1, int r2);
 
 int cggreaterequal(int r1, int r2);
+
+// Compare two registers and set if true.
+int cgcompare_and_set(int ASTop, int r1, int r2);
+
+// Compare two registers and jump if false.
+int cgcompare_and_jump(int ASTop, int r1, int r2, int label);
+
+// Generate a label
+void cglabel(int l);
+
+// Generate a jump to a label
+void cgjump(int l);
 
 #endif // !ASM_86X64_H

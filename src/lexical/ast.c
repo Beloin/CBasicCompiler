@@ -3,7 +3,8 @@
 #include <stdlib.h>
 
 struct ASTnode *mkastnode(ASTNodeType op, struct ASTnode *left,
-                          struct ASTnode *right, int intvalue) {
+                          struct ASTnode *mid, struct ASTnode *right,
+                          int intvalue) {
   struct ASTnode *n;
 
   // Malloc a new ASTnode -> Remember to free
@@ -21,9 +22,9 @@ struct ASTnode *mkastnode(ASTNodeType op, struct ASTnode *left,
 }
 
 struct ASTnode *mkastleaf(ASTNodeType op, int intvalue) {
-  return (mkastnode(op, NULL, NULL, intvalue));
+  return (mkastnode(op, NULL, NULL, NULL, intvalue));
 }
 
 struct ASTnode *mkastunary(ASTNodeType op, struct ASTnode *left, int intvalue) {
-  return (mkastnode(op, left, NULL, intvalue));
+  return (mkastnode(op, left, NULL, NULL, intvalue));
 }

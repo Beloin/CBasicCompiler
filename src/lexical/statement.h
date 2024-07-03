@@ -9,9 +9,10 @@
 //      ;
 
 // Parse one or more statements
+#include "lexical/ast.h"
 void statements(void);
 
-void print_statement();
+struct ASTnode* print_statement();
 
 // Parse the declaration of a variable
 void var_declaration();
