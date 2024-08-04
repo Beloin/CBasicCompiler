@@ -123,6 +123,7 @@ int cgstorglob(int r, char *identifier) {
 
 void cgglobsym(char *sym) { fprintf(Outfile, "\t.comm\t%s,8,8\n", sym); }
 
+// TODO: Remove these compares, since we do no use them
 static int cgcompare(int r1, int r2, char *how) {
   fprintf(Outfile, "\tcmpq\t%s, %s\n", reglist[r2], reglist[r1]);
   fprintf(Outfile, "\t%s\t%s\n", how,

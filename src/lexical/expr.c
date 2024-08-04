@@ -55,16 +55,16 @@ struct ASTnode *binexpr(int ptp) {
 
   // If no tokens left, return just the left node
   tokentype = Token.token;
-  if (tokentype == T_SEMI)
+  if (tokentype == T_SEMI || tokentype == T_RPAREN)
     return (left);
 
   while (op_precedence(tokentype) > ptp) {
     scan(&Token);
     right = binexpr(OpPrec[tokentype]);
-    left = mkastnode(arithop(tokentype), left, right, 0);
+    left = mkastnode(arithop(tokentype), left, NULL, right, 0);
 
     tokentype = Token.token;
-    if (tokentype == T_SEMI) {
+    if (tokentype == T_SEMI || tokentype == T_RPAREN) {
       return left;
     }
   }
@@ -87,7 +87,7 @@ int interpretAST(struct ASTnode *n) {
 #ifdef NDEBUG
   // Debug: Print what we are about to do
   if (n->op == A_INTLIT)
-    printf("int %d\n", n->intvalue);
+    printf("int %d\n", n->v.intvalue);
   else
     printf("%d %s %d\n", leftval, ASTop[n->op], rightval);
 #endif /* ifdef NDEBUG */
@@ -130,7 +130,7 @@ struct ASTnode *additive_expr(void) {
     right = multiplicative_expr();
 
     // Join the two sub-trees with our low-precedence operator
-    left = mkastnode(arithop(tokentype), left, right, 0);
+    left = mkastnode(arithop(tokentype), left, NULL, right, 0);
 
     // And get the next token at our precedence
     tokentype = Token.token;
@@ -162,7 +162,7 @@ struct ASTnode *multiplicative_expr(void) {
     right = primary();
 
     // Join that with the left integer literal
-    left = mkastnode(arithop(tokentype), left, right, 0);
+    left = mkastnode(arithop(tokentype), left, NULL, right, 0);
 
     // Update the details of the current token.
     // If no tokens left, return just the left node

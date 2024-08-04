@@ -3,7 +3,6 @@
 #include "data.h"
 #include "lexical/ast.h"
 #include "lexical/expr.h"
-#include "lexical/gen.h"
 #include "lexical/misc.h"
 #include "lexical/scanner.h"
 #include "lexical/symbols.h"
@@ -29,7 +28,7 @@ void statements(void) {
   }
 }
 
-struct ASTnode* print_statement() {
+struct ASTnode *print_statement() {
   struct ASTnode *tree;
   int reg;
   // Match a 'print' as the first token
@@ -60,7 +59,7 @@ void var_declaration() {
   semi();
 }
 
-void assignment_statement(void) {
+static struct ASTnode *assignment_statement(void) {
   struct ASTnode *left, *right, *tree;
   int id;
 
@@ -82,14 +81,12 @@ void assignment_statement(void) {
 
   // Make an assignment AST tree
   // This means the R value are evaluated before added to L VALUE
-  tree = mkastnode(A_ASSIGN, left, right, 0);
-
-  // Generate the assembly code for the assignment
-  genAST(tree, -1);
-  genfreeregs();
+  tree = mkastnode(A_ASSIGN, left, NULL, right, 0);
 
   // Match the following semicolon
   semi();
+
+  return tree;
 }
 
 struct ASTnode *compound_statement(void) {
@@ -131,7 +128,7 @@ struct ASTnode *compound_statement(void) {
     if (left == NULL)
       left = tree;
     else
-      left = mkastnode(A_GLUE, left, NULL, 0);
+      left = mkastnode(A_GLUE, left, NULL, tree, 0);
   }
 }
 

@@ -21,7 +21,7 @@ void semi();
 
 void ident();
 
-void assignment_statement(void);
+static struct ASTnode* assignment_statement(void);
 
 // Parse a compound statement
 // and return its AST

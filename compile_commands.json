@@ -8,11 +8,162 @@
       "-g",
       "-c",
       "-o",
+      "src/asm/asm.o",
+      "src/asm/asm.c"
+    ],
+    "directory": "/home/beloin/Documents/software/compiler",
+    "file": "/home/beloin/Documents/software/compiler/src/asm/asm.c",
+    "output": "/home/beloin/Documents/software/compiler/src/asm/asm.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Isrc/",
+      "-Ishare/",
+      "-DNDEBUG",
+      "-g",
+      "-c",
+      "-o",
+      "src/asm/cpux8664.o",
+      "src/asm/cpux8664.c"
+    ],
+    "directory": "/home/beloin/Documents/software/compiler",
+    "file": "/home/beloin/Documents/software/compiler/src/asm/cpux8664.c",
+    "output": "/home/beloin/Documents/software/compiler/src/asm/cpux8664.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Isrc/",
+      "-Ishare/",
+      "-DNDEBUG",
+      "-g",
+      "-c",
+      "-o",
+      "src/lexical/ast.o",
+      "src/lexical/ast.c"
+    ],
+    "directory": "/home/beloin/Documents/software/compiler",
+    "file": "/home/beloin/Documents/software/compiler/src/lexical/ast.c",
+    "output": "/home/beloin/Documents/software/compiler/src/lexical/ast.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Isrc/",
+      "-Ishare/",
+      "-DNDEBUG",
+      "-g",
+      "-c",
+      "-o",
       "src/lexical/expr.o",
       "src/lexical/expr.c"
     ],
     "directory": "/home/beloin/Documents/software/compiler",
     "file": "/home/beloin/Documents/software/compiler/src/lexical/expr.c",
     "output": "/home/beloin/Documents/software/compiler/src/lexical/expr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Isrc/",
+      "-Ishare/",
+      "-DNDEBUG",
+      "-g",
+      "-c",
+      "-o",
+      "src/lexical/gen.o",
+      "src/lexical/gen.c"
+    ],
+    "directory": "/home/beloin/Documents/software/compiler",
+    "file": "/home/beloin/Documents/software/compiler/src/lexical/gen.c",
+    "output": "/home/beloin/Documents/software/compiler/src/lexical/gen.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Isrc/",
+      "-Ishare/",
+      "-DNDEBUG",
+      "-g",
+      "-c",
+      "-o",
+      "src/lexical/misc.o",
+      "src/lexical/misc.c"
+    ],
+    "directory": "/home/beloin/Documents/software/compiler",
+    "file": "/home/beloin/Documents/software/compiler/src/lexical/misc.c",
+    "output": "/home/beloin/Documents/software/compiler/src/lexical/misc.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Isrc/",
+      "-Ishare/",
+      "-DNDEBUG",
+      "-g",
+      "-c",
+      "-o",
+      "src/lexical/scanner.o",
+      "src/lexical/scanner.c"
+    ],
+    "directory": "/home/beloin/Documents/software/compiler",
+    "file": "/home/beloin/Documents/software/compiler/src/lexical/scanner.c",
+    "output": "/home/beloin/Documents/software/compiler/src/lexical/scanner.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Isrc/",
+      "-Ishare/",
+      "-DNDEBUG",
+      "-g",
+      "-c",
+      "-o",
+      "src/lexical/statement.o",
+      "src/lexical/statement.c"
+    ],
+    "directory": "/home/beloin/Documents/software/compiler",
+    "file": "/home/beloin/Documents/software/compiler/src/lexical/statement.c",
+    "output": "/home/beloin/Documents/software/compiler/src/lexical/statement.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Isrc/",
+      "-Ishare/",
+      "-DNDEBUG",
+      "-g",
+      "-c",
+      "-o",
+      "src/lexical/symbols.o",
+      "src/lexical/symbols.c"
+    ],
+    "directory": "/home/beloin/Documents/software/compiler",
+    "file": "/home/beloin/Documents/software/compiler/src/lexical/symbols.c",
+    "output": "/home/beloin/Documents/software/compiler/src/lexical/symbols.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Isrc/",
+      "-Ishare/",
+      "-DNDEBUG",
+      "-g",
+      "-otarget",
+      "./src/asm/asm.o",
+      "./src/asm/cpux8664.o",
+      "./src/lexical/ast.o",
+      "./src/lexical/expr.o",
+      "./src/lexical/gen.o",
+      "./src/lexical/misc.o",
+      "./src/lexical/scanner.o",
+      "./src/lexical/statement.o",
+      "./src/lexical/symbols.o",
+      "./cmd/main.c"
+    ],
+    "directory": "/home/beloin/Documents/software/compiler",
+    "file": "/home/beloin/Documents/software/compiler/cmd/main.c"
   }
 ]

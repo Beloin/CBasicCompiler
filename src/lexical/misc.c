@@ -16,6 +16,11 @@ void match(int t, char *what) {
 void semi(void) { match(T_SEMI, ";"); }
 void ident(void) { match(T_IDENTF, "identifier"); }
 
+void lbrace() { match(T_LBRACE, "{"); }
+void rbrace() { match(T_RBRACE, "}"); }
+void lparen() { match(T_LPAREN, "("); }
+void rparen() { match(T_RPAREN, ")"); }
+
 // Print out fatal messages
 void fatal(char *s) {
   fprintf(stderr, "%s on line %d\n", s, Line);

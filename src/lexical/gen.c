@@ -43,7 +43,7 @@ int genAST(struct ASTnode *n, int reg, int parentASTop) {
 
   // Get the left and right sub-tree values
   if (n->left)
-    leftreg = genAST(n->left, -1, n->op);
+    leftreg = genAST(n->left, NOREG, n->op);
   if (n->right)
     rightreg = genAST(n->right, leftreg, n->op);
 
@@ -81,6 +81,12 @@ int genAST(struct ASTnode *n, int reg, int parentASTop) {
   case A_ASSIGN:
     // The work has already been done, return the result
     return rightreg;
+  case A_PRINT:
+    // Print the left-child's value
+    // and return no register
+    genprintint(leftreg);
+    genfreeregs();
+    return (NOREG);
   default:
     fatald("Unknown AST operator", n->op);
   }

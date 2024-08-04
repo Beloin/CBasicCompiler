@@ -1,6 +1,7 @@
 #include "asm/asm.h"
 #include "data.h"
 #include "lexical/ast.h"
+#include "lexical/gen.h"
 #include "lexical/symbols.h"
 #include <errno.h>
 #include <stdio.h>
@@ -51,8 +52,12 @@ int main(int argc, char *argv[]) {
 
   scan(&Token);    // Get the first token from the input
   genpreamble();   // Output the preamble
-  statements();    // Parse the statements in the input
+  ast = compound_statement();
+  printf("generated statements\n");
+  genAST(ast, NOREG, 0);
+  printf("generated ast\n");
   genpostamble();  // Output the postamble
+
   fclose(Outfile); // Close the output file and exit
 
   return EXIT_SUCCESS;

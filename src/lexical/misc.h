@@ -18,4 +18,10 @@ void fatals(char *s1, char *s2);
 void fatald(char *s, int d);
 void fatalc(char *s, int c);
 
+void rbrace();
+void lbrace();
+
+void lparen();
+void rparen();
+
 #endif // !SHARE_HELPER_H
