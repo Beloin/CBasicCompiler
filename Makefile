@@ -15,6 +15,9 @@ debug: target
 
 all: target
 
+test: target
+	./${TARGET_OUT} examples/flow-control/example_02.bc
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 

@@ -1,11 +1,14 @@
 {
+  "version": "0.2.0",
   "configurations":[ 
     {
+      "type": "cppdbg",
+      "request": "launch",
       "run": "make debug",
       "program": "./target",
       "preProcess": true,
       "pipeline": ["echo 'Hello World'", "make debug"],
-      "args" : ["examples/math_example_02.bc"]
+      "args" : ["examples/flow-control/example_02.bc"]
     }
   ]
 }

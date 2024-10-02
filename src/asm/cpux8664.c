@@ -147,7 +147,6 @@ int cggreaterequal(int r1, int r2) { return (cgcompare(r1, r2, "setge")); }
 
 // Compare two registers and set if true.
 int cgcompare_and_set(int ASTop, int r1, int r2) {
-
   // Check the range of the AST operation
   if (ASTop < A_EQ || ASTop > A_GE)
     fatal("Bad ASTop in cgcompare_and_set()");

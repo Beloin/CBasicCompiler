@@ -34,8 +34,11 @@ static void init() {
 int main(int argc, char *argv[]) {
   struct ASTnode *ast;
   Infile = fopen(argv[1], "r");
-  if (argc != 2)
+  if (argc != 2) {
+    fprintf(stderr, "Not given any args\n");
     exit(1);
+  }
+  printf("Startin to read input file...\n");
 
   init();
   // Open up the input file
@@ -50,13 +53,13 @@ int main(int argc, char *argv[]) {
     exit(1);
   }
 
-  scan(&Token);    // Get the first token from the input
-  genpreamble();   // Output the preamble
+  scan(&Token);  // Get the first token from the input
+  genpreamble(); // Output the preamble
   ast = compound_statement();
   printf("generated statements\n");
   genAST(ast, NOREG, 0);
   printf("generated ast\n");
-  genpostamble();  // Output the postamble
+  genpostamble(); // Output the postamble
 
   fclose(Outfile); // Close the output file and exit
 

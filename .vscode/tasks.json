@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "taskName": "build",
+      "type": "shell",
+      "label": "Build debug code",
+      "command": "make debug"
+    }
+  ]
+}
