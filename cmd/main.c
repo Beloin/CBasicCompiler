@@ -55,6 +55,7 @@ int main(int argc, char *argv[]) {
 
   scan(&Token);  // Get the first token from the input
   genpreamble(); // Output the preamble
+  // TODO: The sigsevis caused by null ast
   ast = compound_statement();
   printf("generated statements\n");
   genAST(ast, NOREG, 0);
