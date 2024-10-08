@@ -1,16 +1,35 @@
 {
   "version": "0.0.1",
-  "configurations":[ 
+  "configurations": [
     {
-      "name": "My C Program",
+      "name": "Debug Compiler",
       "lang": "c",
       "type": "codelldb",
-      "run": "make debug",
       "program": "./target",
-      "pipeline": [ "echo 'Hello World'", "make debug" ],
-      "args" : [ "examples/flow-control/example_02.bc" ],
-      "env": { 
-        "ENV_VAR": "1" 
+      "pipeline": [
+        "echo 'Hello World'",
+        "make debug"
+      ],
+      "args": [
+        "examples/flow-control/example_02.bc"
+      ],
+      "env": {
+        "ENV_VAR": "My enviroment Variable 2"
+      }
+    },
+    {
+      "name": "Run Compiler",
+      "lang": "c",
+      "type": "codelldb",
+      "program": "./target",
+      "pipeline": [
+        "make target"
+      ],
+      "args": [
+        "examples/flow-control/example_02.bc"
+      ],
+      "env": {
+        "ENV_VAR": "New enviroment"
       }
     }
   ]
