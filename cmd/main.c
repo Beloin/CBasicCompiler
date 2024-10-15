@@ -33,17 +33,13 @@ static void init() {
 
 int main(int argc, char *argv[]) {
   struct ASTnode *ast;
-  Infile = fopen(argv[1], "r");
-
-  char *c = getenv("ENV_VAR");
-  if (c) {
-    printf("ENV_VAR=%s\n", c);
-  }
 
   if (argc != 2) {
     fprintf(stderr, "Not given any args\n");
     exit(1);
   }
+
+  Infile = fopen(argv[1], "r");
   printf("Startin to read input file...\n");
 
   init();

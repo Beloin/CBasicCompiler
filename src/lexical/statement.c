@@ -106,7 +106,7 @@ struct ASTnode *compound_statement(void) {
       tree = NULL;
       break;
     case T_IDENTF:
-      tree = assignment_statement();
+      tree = assignment_statement(); // TODO: Isn't tree lost?
       break;
     case T_IF:
       tree = if_statement();
@@ -119,16 +119,16 @@ struct ASTnode *compound_statement(void) {
     default:
       fatald("Syntax error, token", Token.token);
     }
-  }
 
-  // For each new tree, either save it in left
-  // if left is empty, or glue the left and the
-  // new tree together
-  if (tree) {
-    if (left == NULL)
-      left = tree;
-    else
-      left = mkastnode(A_GLUE, left, NULL, tree, 0);
+    // For each new tree, either save it in left
+    // if left is empty, or glue the left and the
+    // new tree together
+    if (tree) {
+      if (left == NULL)
+        left = tree;
+      else
+        left = mkastnode(A_GLUE, left, NULL, tree, 0);
+    }
   }
 }
 
